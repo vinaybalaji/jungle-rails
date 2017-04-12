@@ -5,11 +5,9 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      flash[:notice] = "Account created successfully!"
       session[:user_id] = user.id
       redirect_to '/'
     else
-      flash.now.alert = "Oops, couldn't create account. Please make sure you are using a valid email and password and try again."
       redirect_to '/signup'
     end
   end
@@ -17,6 +15,22 @@ class UsersController < ApplicationController
   private
 
   def user_params
+    if params[:user][:email].blank?
+      flash[:notice] = "Oops, couldn't create account. Please make sure you are entering a valid email and try again."
+      return
+    end
+    if params[:user][:password].blank? || params[:user][:password_confirmation].blank?
+      flash[:notice] = "Oops, couldn't create account. Please make sure you are entering a valid password."
+      return
+    end
+    if params[:user][:password] != params[:user][:password_confirmation]
+      flash[:notice] = "Oops, passwords don't match. Please try again."
+      return
+    end
+    if User.exists?(email: params[:user][:email])
+      flash[:notice] = "Oops, account already exists. Please try again or log in with your existing email."
+      return
+    end
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 

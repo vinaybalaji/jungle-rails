@@ -9,18 +9,7 @@
 <body>
 
   <%= render 'layouts/top_nav' %>
-
-  <% if flash[:notice] %>
-    <div>
-      <%= flash[:notice] %>
-    </div>
-  <% end %>
-  <% if flash[:alert] %>
-    <div>
-      <%= flash[:alert] %>
-    </div>
-  <% end %>     
-
+  
   <main class="container">
     <%= yield %>
   </main>
