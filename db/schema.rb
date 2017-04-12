@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20160625062916) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "categories", name: "index_categories_on_category_id", using: :btree
+
   create_table "line_items", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "product_id"
