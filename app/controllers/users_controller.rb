@@ -15,6 +15,10 @@ class UsersController < ApplicationController
   private
 
   def user_params
+    if params[:user][:first_name].blank? || params[:user][:last_name].blank?
+      flash[:notice] = "Oops, couldn't create account. Please make sure you enter a first name and last name."
+      return
+    end
     if params[:user][:email].blank?
       flash[:notice] = "Oops, couldn't create account. Please make sure you are entering a valid email and try again."
       return
@@ -31,7 +35,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Oops, account already exists. Please try again or log in with your existing email."
       return
     end
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 
 end
