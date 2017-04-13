@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
 
   def show
+    @email = params[:email]
   end
 
   def add_item
