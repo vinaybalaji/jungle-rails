@@ -1,4 +1,5 @@
 <article class="product">
+  <%  reviews_list = @reviews.where(product_id: product.id) %>
   <% if product.quantity == 0  %>
     <aside class="soldout">
       SOLD OUT!
@@ -10,6 +11,16 @@
       <h4><%= product.name %></h4>
     <% end %>
   </header>
+  <% if reviews_list.length>0 %>
+    <% total_rating = 0 %>
+    <% reviews_list.each do |review| %>
+    <% total_rating += review.rating %>
+    <% end %>
+    <% overall_rating = (total_rating.to_f / reviews_list.length.to_f).round %>
+      <p class ="description">
+        <i style="color: tomato">Overall Rating: <%= overall_rating %></i>
+      </p>
+  <% end %>
   <p class="description">
     <%= product.description %>
   </p>
