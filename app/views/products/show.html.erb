@@ -30,6 +30,18 @@
               <dd><hr style="margin-top: 5px; margin-bottom: 5px"></dd>
             <% end %>
           <% end %>
+          <% if current_user %>
+            <dt>Write a reivew</dt>
+            <%= form_for [@product, @review], method: :post do |f| %>
+              <dd>
+              <%= f.select :rating, options_for_select([1, 2, 3, 4, 5]) %>
+              </dd>
+              <br>
+              <dd><%= f.text_area :description, class: 'form-control' %></dd>
+              <br>
+              <dd><%= f.submit 'Submit Review', class: 'btn btn-primary' %></dd>
+            <% end %>
+          <% end %>
         </dl>
       </div>
     </div>
