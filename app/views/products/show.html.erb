@@ -27,6 +27,11 @@
             <% @reviews.each do |review| %>
               <dd><i>Rating: <%= review.rating %></i></dd>
               <dd><%= review.description %></dd>
+              <% if current_user %>
+                <% if review.user_id == current_user.id %>
+                  <dd style="font-size: 70%"><i><%= link_to 'Delete', [@product, review], method: :delete, data: { confirm: "Are you sure?" } %></i></dd>
+                <% end %>
+              <% end %>
               <dd><hr style="margin-top: 5px; margin-bottom: 5px"></dd>
             <% end %>
           <% end %>
