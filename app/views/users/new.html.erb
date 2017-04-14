@@ -10,14 +10,13 @@
 
 <%= form_for :user, url: '/users' do |f| %>
   <p>
-  First Name: <%= f.text_field :first_name %>
-  Last Name: <%= f.text_field :last_name %>
+  First Name: <%= f.text_field :first_name, class: 'form-control' %>
+  Last Name: <%= f.text_field :last_name, class: 'form-control' %>
   <p>
-  Email: <%= f.email_field :email %>
+  Email: <%= f.email_field :email, class: 'form-control' %>
   <p>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
+  Password: <%= f.password_field :password, class: 'form-control' %>
+  Password Confirmation: <%= f.password_field :password_confirmation, class: 'form-control' %>
   <p>
-  <%= f.submit "Submit" %>
-
+  <%= f.submit "Submit", class: 'btn btn-primary' %>
 <% end %>
