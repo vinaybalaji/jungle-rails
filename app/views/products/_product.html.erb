@@ -1,5 +1,4 @@
 <article class="product">
-  <%  reviews_list = @reviews.where(product_id: product.id) %>
   <% if product.quantity == 0  %>
     <aside class="soldout">
       SOLD OUT!
@@ -11,6 +10,7 @@
       <h4><%= product.name %></h4>
     <% end %>
   </header>
+  <%  reviews_list = @reviews.where(product_id: product.id) %>
   <% if reviews_list.length>0 %>
     <% total_rating = 0 %>
     <% reviews_list.each do |review| %>
@@ -25,14 +25,15 @@
     <%= product.description %>
   </p>
   <footer class="actions">
+  <% if product.quantity > 0 %>
     <%= link_to add_item_cart_path(product_id: product.id), class: 'btn btn-primary', method: :put do %>
       <%= fa_icon "shopping-cart", text: 'Add' %>
     <% end %>
+  <% end %>
     <%= link_to product, class: 'btn btn-default pull-right' do %>
       Details &raquo;
     <% end %>
   </footer>
-
   <aside class="price">
     <%= humanized_money_with_symbol product.price %>
   </aside>
