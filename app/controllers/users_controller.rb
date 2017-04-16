@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       message = "Oops! Passwords don't match. Please try again."
     end
     if User.exists?(email: email)
-      message = "Oops! Please try again or log in with your existing email."
+      message = "Oops! E-mail already exists. Please try again or log in with your existing email."
     end
     if message
       flash[:notice] = message

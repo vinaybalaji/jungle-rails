@@ -2,13 +2,12 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @line_items = LineItem.where(order_id: params[:id])
+    @line_items = @order.line_items
   end
 
   def create
     charge = perform_stripe_charge
     order  = create_order(charge)
-
     if order.valid?
       empty_cart!
       OrderMailer.order_confirmation_email(order).deliver_now
@@ -16,8 +15,7 @@ class OrdersController < ApplicationController
     else
       redirect_to cart_path, error: order.errors.full_messages.first
     end
-
-  rescue Stripe::CardError => e
+    rescue Stripe::CardError => e
     redirect_to cart_path, error: e.message
   end
 

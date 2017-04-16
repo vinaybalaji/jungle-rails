@@ -19,7 +19,8 @@
           <dd><%= @product.price %></dd>
           <% if @reviews.length!=0 %>
             <dt>Reviews</dt>
-            <% @reviews.each do |review| %>
+            <% reviews = @product.reviews.order(created_at: :desc)%>
+            <% reviews.each do |review| %>
               <dd><i>Rating: <%= review.rating %></i></dd>
               <dd><%= review.description %></dd>
               <% if current_user && review.user_id == current_user.id %>

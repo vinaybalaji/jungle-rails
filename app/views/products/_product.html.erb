@@ -10,7 +10,7 @@
       <h4><%= product.name %></h4>
     <% end %>
   </header>
-  <%  reviews_list = @reviews.where(product_id: product.id) %>
+  <%  reviews_list = product.reviews %>
   <% if reviews_list.length>0 %>
     <% total_rating = 0 %>
     <% reviews_list.each do |review| %>
