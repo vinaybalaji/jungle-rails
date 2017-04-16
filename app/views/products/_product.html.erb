@@ -12,14 +12,9 @@
   </header>
   <%  reviews_list = product.reviews %>
   <% if reviews_list.length>0 %>
-    <% total_rating = 0 %>
-    <% reviews_list.each do |review| %>
-    <% total_rating += review.rating %>
-    <% end %>
-    <% overall_rating = (total_rating.to_f / reviews_list.length.to_f).round %>
-      <p class ="description">
-        <i style="color: tomato">Overall Rating: <%= overall_rating %></i>
-      </p>
+    <p class ="description">
+      <i style="color: tomato">Overall Rating: <%= Review.where(product_id: product.id).average(:rating).round %></i>
+    </p>
   <% end %>
   <p class="description">
     <%= product.description %>

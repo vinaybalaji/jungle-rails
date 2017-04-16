@@ -17,9 +17,9 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
-          <% if @reviews.length!=0 %>
+          <% reviews = @product.reviews.order(created_at: :desc)%>
+          <% if reviews.length!=0 %>
             <dt>Reviews</dt>
-            <% reviews = @product.reviews.order(created_at: :desc)%>
             <% reviews.each do |review| %>
               <dd><i>Rating: <%= review.rating %></i></dd>
               <dd><%= review.description %></dd>
