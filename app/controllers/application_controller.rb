@@ -6,10 +6,14 @@ class ApplicationController < ActionController::Base
   private
 
   def cart
-    # value = cookies[:cart] || JSON.generate({})
     @cart ||= cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
   end
   helper_method :cart
+
+  def rating_options
+    @rating_options = [1, 2, 3, 4, 5]
+  end
+  helper_method :rating_options
 
   def update_cart(new_cart)
     cookies[:cart] = {
