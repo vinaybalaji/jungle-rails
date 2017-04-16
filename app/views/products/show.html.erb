@@ -37,7 +37,7 @@
           <% end %>
           <% if current_user %>
             <dt>Write a reivew</dt>
-            <%= form_for [@product, @review], method: :post do |f| %>
+            <%= form_for [@product, @review] do |f| %>
               <dd>
               <%= f.select :rating, options_for_select(rating_options) %>
               </dd>
