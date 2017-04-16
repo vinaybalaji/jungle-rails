@@ -10,8 +10,7 @@
       <h4><%= product.name %></h4>
     <% end %>
   </header>
-  <%  reviews_list = product.reviews %>
-  <% if reviews_list.length>0 %>
+  <% if product.reviews.length>0 %>
     <p class ="description">
       <i style="color: tomato">Overall Rating: <%= Review.where(product_id: product.id).average(:rating).round %></i>
     </p>
