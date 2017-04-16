@@ -1,21 +1,21 @@
 class ReviewsController < ApplicationController
+
   def create
     review = create_review
-    if review.valid?
-      redirect_to :back
-    else 
-      redirect_to :back
+    if !review.valid?
+      flash[:notice] = "Oops. Could not save review. Please try again"
     end
+    redirect_to :back
   end
 
   def destroy
     @review = Review.find params[:id]
     if @review.user_id == current_user.id
       @review.destroy
-      redirect_to :back
-    else
-      redirect_to :back
+    else 
+      flash[:notice] = "Oops. You are not authorized to delete this review."
     end
+    redirect_to :back
   end
 
   private
@@ -30,4 +30,5 @@ class ReviewsController < ApplicationController
     review.save!
     review
   end
+
 end

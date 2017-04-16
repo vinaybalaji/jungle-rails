@@ -1,9 +1,7 @@
 <section class="cart-show">
-
   <header class="page-header">
     <h1>My Cart</h1>
   </header>
-
 <% if cart.length == 0 %>
     <h4> Your cart is empty. <h4>
     <%= link_to "Continue Shopping", root_path %>
@@ -36,11 +34,9 @@
         </tfoot>
       </table>
     </div>
-
   <%if @email!='' %>
     <% @order_email = @email %>
   <% end %>
-
   <% if !@order_email %>
     <% if !current_user %>
       <div class="row">
@@ -58,7 +54,6 @@
       <% @order_email = current_user.email %>
     <% end %>
   <% end %>
-
   <% if @order_email %>
     <div class="row">
       <div class="col-xs-12">
