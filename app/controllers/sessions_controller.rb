@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path
     else
-      flash[:notice] = "Oops, email doesn't exist. Please try again or sign up for a new account."
+      flash[:notice] = "Oops, email or password is invalid. Please try again."
       redirect_to login_path
     end
   end

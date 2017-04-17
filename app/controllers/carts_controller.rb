@@ -1,7 +1,14 @@
 class CartsController < ApplicationController
 
   def show
-    @email = params[:email]
+    if session[:email]
+      @email = session[:email]
+    end
+  end
+
+  def set_email
+    session[:email] = params[:email]
+    redirect_to :back
   end
 
   def add_item

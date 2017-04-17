@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   end
   resources :categories, only: [:show]
   resource :cart, only: [:show] do
-    put    :add_item
+    put :add_item
+    put :set_email
     delete :remove_item
   end
   resources :orders, only: [:create, :show]

@@ -32,7 +32,11 @@ class ApplicationController < ActionController::Base
 
   def admin_user
     authenticate_or_request_with_http_basic do |name, password|
-      if name == ENV['ADMIN_USER_NAME'] && password == ENV['ADMIN_PASSWORD'] ? return true : return false
+      if name == ENV['ADMIN_USER_NAME'] && password == ENV['ADMIN_PASSWORD']
+        return true
+      else 
+        return false
+      end
     end
   end
   helper_method :admin_user
