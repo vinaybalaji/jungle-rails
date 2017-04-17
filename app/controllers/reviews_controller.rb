@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+before_filter :current_user
 
   def create
     review = create_review
@@ -10,11 +11,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find params[:id]
-    if @review.user_id == current_user.id
-      @review.destroy
-    else 
-      flash[:notice] = "Oops. You are not authorized to delete this review."
-    end
+    @review.destroy
     redirect_to :back
   end
 
