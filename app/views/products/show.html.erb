@@ -16,17 +16,17 @@
           <dt>Quantity</dt>
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
-          <dd><%= @product.price %></dd>
+          <dd><%= number_to_currency(@product.price) %></dd>
           <% reviews = @product.reviews.order(created_at: :desc)%>
           <% if reviews.length!=0 %>
             <dt>Reviews</dt>
             <% reviews.each do |review| %>
-              <dd><i>Rating: <%= review.rating %></i></dd>
+              <dd class="rating-display">Rating: <%= review.rating %></dd>
               <dd><%= review.description %></dd>
               <% if current_user && review.user_id == current_user.id %>
-                <dd style="font-size: 70%"><i><%= link_to 'Delete', [@product, review], method: :delete, data: { confirm: "Are you sure?" } %></i></dd>
+                <dd class="delete-review"><%= link_to 'Delete', [@product, review], method: :delete, data: { confirm: "Are you sure?" } %></dd>
               <% end %>
-              <dd><hr style="margin-top: 5px; margin-bottom: 5px"></dd>
+              <dd><hr class="divide-review"></dd>
             <% end %>
           <% end %>
           <% if current_user %>

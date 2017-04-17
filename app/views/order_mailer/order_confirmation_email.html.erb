@@ -14,15 +14,15 @@
      <table align="left" border="1">
       <thead align="left">
         <tr align="left">
-          <th align="right">Product</th>
+          <th align="left">Product</th>
           <th align="center">Unit Price</th>
           <th align="center">Quantity</th>
           <th align="center">Price</th>
         </tr>
       </thead>
       <tbody>
-        <% @line_items.each do |line_item| %>
-          <% if product = Product.find_by(id: line_item.product_id) %>
+        <% @order.line_items.each do |line_item| %>
+          <% product = Product.find_by(id: line_item.product_id) %>
             <tr>
               <td>
                 <h4><%= product.name %></h4>
@@ -36,11 +36,10 @@
                 <%= line_item.quantity %>
               </td>
               <td align="center">
-                <%= number_to_currency ((line_item.total_price_cents.to_f)/100) %>
+                <%= number_to_currency((line_item.total_price_cents.to_f)/100) %>
               </td>
           </tr>
         <% end %>
-      <%end%>
       </tbody>
       <tfoot>
         <tr align="left">
@@ -48,7 +47,7 @@
             TOTAL:
           </th>
           <th>
-            <%= number_to_currency ((@order.total_cents.to_f)/100) %>
+            <%= number_to_currency((@order.total_cents.to_f)/100) %>
           </th>
         </tr>
       </tfoot>

@@ -11,8 +11,8 @@
     <% end %>
   </header>
   <% if product.reviews.length>0 %>
-    <p class ="description">
-      <i style="color: tomato">Overall Rating: <%= Review.where(product_id: product.id).average(:rating).round %></i>
+    <p class ="overall-rating">
+      Overall Rating: <%= Review.where(product_id: product.id).average(:rating).round %>
     </p>
   <% end %>
   <p class="description">
@@ -29,6 +29,6 @@
     <% end %>
   </footer>
   <aside class="price">
-    <%= humanized_money_with_symbol product.price %>
+    <%= number_to_currency(product.price) %>
   </aside>
 </article>

@@ -18,7 +18,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @line_items.each do |item| %>
+        <% @order.line_items.each do |item| %>
           <%= render item %>
         <% end %>
       </tbody>
@@ -28,7 +28,7 @@
             TOTAL:
           </th>
           <th>
-            <%= number_to_currency ((@order.total_cents.to_f)/100) %>
+            <%= number_to_currency((@order.total_cents.to_f)/100) %>
           </th>
         </tr>
       </tfoot>

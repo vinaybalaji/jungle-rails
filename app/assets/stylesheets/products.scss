@@ -63,6 +63,11 @@ main section.categories-show {
         font-size: 0.8em;
       }
 
+      p.overall-rating {
+        color: #337ab7;
+        font-style: italic
+      }
+
       &:hover {
         border-color: #999;
         footer {
@@ -79,6 +84,22 @@ main section.products-show {
   .product-detail {
     img.main-img {
       max-width: 100%;
+    }
+
+    dd.delete-review {
+      font-size: 85%;
+      font-style: italic;
+      margin-bottom: 0px
+    }
+    
+    hr.divide-review {
+      margin-top: 5px;
+      margin-bottom: 5px
+    }
+
+    dd.rating-display {
+      color: #337ab7;
+      font-style: italic;
     }
   }
 }
