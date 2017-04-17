@@ -24,17 +24,13 @@ class UsersController < ApplicationController
     password_confirmation = user[:password_confirmation]
     if first_name.blank? || last_name.blank?
       message = "Oops! Please make sure you enter a first name and last name."
-    end
-    if email.blank?
+    elsif email.blank?
       message = "Oops! Please make sure you are entering a valid email and try again."
-    end
-    if password.blank? || password_confirmation.blank?
+    elsif password.blank? || password_confirmation.blank?
       message = "Oops! Please make sure you are entering a valid password."
-    end
-    if password != password_confirmation
+    elsif password != password_confirmation
       message = "Oops! Passwords don't match. Please try again."
-    end
-    if User.exists?(email: email)
+    elsif User.exists?(email: email)
       message = "Oops! E-mail already exists. Please try again or log in with your existing email."
     end
     if message
