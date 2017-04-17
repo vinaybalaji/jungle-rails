@@ -2,7 +2,7 @@ class Admin::CategoriesController < ApplicationController
   before_filter :admin_user
 
   def index
-    @categories = Category.order(id: :desc).all
+    @categories = Category.order(name: :asc).all
   end
 
   def new
