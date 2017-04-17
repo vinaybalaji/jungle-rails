@@ -58,3 +58,6 @@ bower.json
 
 #Ignore .gitignore file
 .gitignore
+
+#Ignore DS Store files
+.DS_Store
