@@ -5,7 +5,8 @@ class UsersController < ApplicationController
 
   def create
     new_user = create_user
-    if new_user && new_user.valid?
+    # if new_user && new_user.valid?
+    if new_user
       session[:user_id] = new_user.id
       redirect_to root_path
     else
